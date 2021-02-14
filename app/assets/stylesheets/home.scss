@@ -2,7 +2,27 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-.DayDescription-show {
-    height: 800px;
-    width: 1024px;
+.AddSurfDay {
+    &_form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+    }
+}
+
+.DayDescription {
+    &_textarea {
+	height: 800px;
+	width: 1024px;
+	cursor: pointer;
+	padding: 5px;
+	&:hover {
+	    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	    border: 1px solid rgba(81, 203, 238, 1);
+	}
+	
+	&-isEditing {
+	    cursor: auto;
+	}
+    }
 }
