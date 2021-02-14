@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import ReactMarkdown from 'react-markdown'
+import { DayDescription } from "./day_description";
 
 export function AddSurfDay(props) {
   const [dayAwesomenessRating, setDayAwesomenessRating ] = useState("so-so");
@@ -11,27 +11,31 @@ export function AddSurfDay(props) {
 
   const handleDayAwesomenessRatingChange = ({ target }) => {
     setDayAwesomenessRating(target.value);
-  }
+  };
 
   const handleStartEditingDayDescription = ({ target }) => {
     setIsEditing(true);
-  }
+  };
 
   const handleDayDescriptionChange = ({ target }) => {
     setDayDescription(target.value);
-  }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // This should be on a effect after successful submission
     setIsEditing(false);
-  }
+  };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="AddSurfDay_form">
       <label>
         Was it good?
-        <input type="radio" value="1" value={dayAwesomenessRating} onChange={handleDayAwesomenessRatingChange} />
+        <input
+          type="radio"
+          value={dayAwesomenessRating}
+          onChange={handleDayAwesomenessRatingChange}
+        />
       </label>
       <DayDescription 
         dayDescription={dayDescription}
@@ -44,33 +48,10 @@ export function AddSurfDay(props) {
   );
 }
 
-function DayDescription(props) {
-  if(props.isEditing) {
-   return(
-    <label>
-    Tell me more:
-    <textarea 
-      className="DayDescription-show" 
-      value={props.dayDescription} 
-      onChange={props.onDayDescriptionChange} 
-      placeholder="Hey! How was it grom?">
-    </textarea>
-  </label> 
-    );
-  }
-  return (
-    <div 
-      className="DayDescription-show"
-      onClick={props.onClickDayDescription}
-    >
-      <ReactMarkdown children={props.dayDescription} />
-    </div>
-  );
-}
 
-AddSurfDay.defaultProps = { }
+AddSurfDay.defaultProps = { };
 
 AddSurfDay.propTypes = {
   dayDescription: PropTypes.string,
   dayAwesomeness: PropTypes.number
-}
+};
