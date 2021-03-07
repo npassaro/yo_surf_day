@@ -3,28 +3,43 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .AddSurfDay {
-    &_form {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-    }
+  &_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100vh;
+  }
 }
 
+@import "react-datepicker/dist/react-datepicker-cssmodules.css";
+
 .DayDescription {
-    &_textarea {
-	height: 800px;
-	width: 1024px;
-	cursor: pointer;
-	padding: 5px;
-	&:hover {
-	    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-	    border: 1px solid rgba(81, 203, 238, 1);
-	}
-	
-	&-isEditing {
-	    cursor: auto;
-	}
+  &_textarea {
+    height: 80%;
+
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+      border: 1px solid rgba(81, 203, 238, 1);
     }
+
+    &-isEditing {
+      cursor: auto;
+    }
+  }
+
+  // React Datepicker
+  .react-datepicker-wrapper,
+  .react-datepicker__input-container {
+    display: flex;
+
+    input {
+      width: 100%;
+    }
+  }
+}
+
 .DayRating {
   &_icon {
     height: 24px;
