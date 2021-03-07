@@ -25,4 +25,30 @@
 	    cursor: auto;
 	}
     }
+.DayRating {
+  &_icon {
+    height: 24px;
+    width: 24px;
+    circle {
+      stroke: black;
+      fill: none;
+      stroke-width: 10pt;
+    }    
+    
+    &--isChecked {
+      
+      circle {
+        fill-opacity: .4;
+        stroke: burlywood;
+        fill: yellow;
+        stroke-width: 10pt;
+      }  
+    }
+  }
+  
+  
+
+  &_input {
+    display: none;
+  }
 }
