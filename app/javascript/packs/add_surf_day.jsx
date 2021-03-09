@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
-import { DayDescription } from "./day_description";
-import { DayRating } from "./day_rating";
-import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import locale from "date-fns/locale/en-GB";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
+import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { DayDescription } from "./day_description";
+import { DayPrediction } from "./day_prediction";
+import { DayRating } from "./day_rating";
 
 registerLocale("en-GB", locale);
 setDefaultLocale("en-GB");
 
-import "react-datepicker/dist/react-datepicker.css";
 
 export function AddSurfDay(props) {
     const awesomenessDayRatings = {
@@ -25,12 +25,13 @@ export function AddSurfDay(props) {
             text: "Brahhh!",
             value: 3
         }
-      };
+    };
     const [dayAwesomenessRating, setDayAwesomenessRating ] = useState(awesomenessDayRatings["SoSo"].value);
     const [dayDateAndTime, setDayDateAndTime ] = useState(new Date());
     const [dayDescription, setDayDescription ] = useState('');
     const [isEditing, setIsEditing] = useState(false);
-
+    const [dayPrediction, setDayPrediction] = useState({});
+    
     const handleDayAwesomenessRatingChange = (value) => {
         setDayAwesomenessRating(value);
     };
@@ -47,11 +48,20 @@ export function AddSurfDay(props) {
         setDayDateAndTime(dateAndTime);
     };
 
+    const handleDayPredictionChange = (dayPrediction) => {
+        setDayPrediction(dayPrediction);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         // This should be on a effect after successful submission
         setIsEditing(false);
-        console.log("Submitting...", event.target.value);
+        console.log("Submitting...", {
+          dayAwesomenessRating,
+          dayDateAndTime,
+          dayDescription,
+          dayPrediction
+        });
     };
 
     return (
@@ -78,6 +88,10 @@ export function AddSurfDay(props) {
               isEditing={isEditing}
               onDayDescriptionChange={handleDayDescriptionChange}
               onClickDayDescription={handleStartEditingDayDescription}
+            />
+            <DayPrediction 
+              onChange={handleDayPredictionChange}
+              prediction={dayPrediction}
             />
             <input type="submit" value="Submit" />
           </form>
