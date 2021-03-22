@@ -1,38 +1,42 @@
-import locale from "date-fns/locale/en-GB";
-import PropTypes from "prop-types";
-import React, { useState } from "react";
-import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { DayDescription } from "./day_description";
-import { DayPrediction } from "./day_prediction";
-import { DayRating } from "./day_rating";
+import locale from 'date-fns/locale/en-GB';
+import PropTypes from 'prop-types';
+import React, { useEffect, useState } from 'react';
+import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { saveSurfDay } from './add_surf_day.service';
+import { DayDescription } from './day_description';
+import { DayPrediction } from './day_prediction';
+import { DayRating } from './day_rating';
 
-registerLocale("en-GB", locale);
-setDefaultLocale("en-GB");
+registerLocale('en-GB', locale);
+setDefaultLocale('en-GB');
 
-
-export function AddSurfDay(props) {
+export function AddSurfDay({ csrfToken }) {
     const awesomenessDayRatings = {
-        "Nah": {
+        low: {
             value: 1,
-            text: "Nah",
-        }, 
-        "SoSo": {
-            text: "So-So",
+            text: 'Nah'
+        },
+        medium: {
+            text: 'So-So',
             value: 2
-        }, 
-        "Brah": {
-            text: "Brahhh!",
+        },
+        high: {
+            text: 'Brahhh!',
             value: 3
         }
     };
-    const [dayAwesomenessRating, setDayAwesomenessRating ] = useState(awesomenessDayRatings["SoSo"].value);
-    const [dayDateAndTime, setDayDateAndTime ] = useState(new Date());
-    const [dayDescription, setDayDescription ] = useState('');
+    const [dayAwesomenessRating, setDayAwesomenessRating] = useState(
+        awesomenessDayRatings.medium.value
+    );
+    const [dayDateAndTime, setDayDateAndTime] = useState(new Date().toISOString());
+    const [dayDescription, setDayDescription] = useState('');
     const [isEditing, setIsEditing] = useState(false);
     const [dayPrediction, setDayPrediction] = useState({});
-    
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleDayAwesomenessRatingChange = (value) => {
+        console.log(value);
         setDayAwesomenessRating(value);
     };
 
@@ -45,63 +49,78 @@ export function AddSurfDay(props) {
     };
 
     const handleDayDateAndTimeChange = (dateAndTime) => {
-        setDayDateAndTime(dateAndTime);
+        setDayDateAndTime(dateAndTime.toISOString());
     };
 
     const handleDayPredictionChange = (dayPrediction) => {
         setDayPrediction(dayPrediction);
     };
 
+    useEffect(async () => {
+        if (isLoading) {
+            return await saveSurfDay(csrfToken, {
+                dayAwesomenessRating,
+                dayDateAndTime,
+                dayDescription,
+                dayPrediction
+            })
+                .catch((error) => {
+                    console.error('Error:', error);
+                })
+                .then(() => setIsLoading(false));
+        }
+    }, [isLoading]);
+
     const handleSubmit = (event) => {
         event.preventDefault();
         // This should be on a effect after successful submission
         setIsEditing(false);
-        console.log("Submitting...", {
-          dayAwesomenessRating,
-          dayDateAndTime,
-          dayDescription,
-          dayPrediction
-        });
+        setIsLoading(true);
     };
 
     return (
         <div className="DayDescription">
-          <form onSubmit={handleSubmit} className="AddSurfDay_form">
-            <label>
-              Was it good?
-              <DayRating
-                rating={dayAwesomenessRating}
-                onChange={handleDayAwesomenessRatingChange}
-                possibleRatings={awesomenessDayRatings}
-              />
-            </label>
-            <label>
-              <DatePicker
-                showTimeSelect
-                selected={dayDateAndTime}
-                onChange={handleDayDateAndTimeChange}
-                dateFormat="PPpp"
-              />
-            </label>
-            <DayDescription 
-              dayDescription={dayDescription}
-              isEditing={isEditing}
-              onDayDescriptionChange={handleDayDescriptionChange}
-              onClickDayDescription={handleStartEditingDayDescription}
-            />
-            <DayPrediction 
-              onChange={handleDayPredictionChange}
-              prediction={dayPrediction}
-            />
-            <input type="submit" value="Submit" />
-          </form>
-          <div>Icons made by <a href="https://smashicons.com/" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+            <form onSubmit={handleSubmit} className="AddSurfDay_form">
+                <label>
+                    Was it good?
+                    <DayRating
+                        rating={dayAwesomenessRating}
+                        onChange={handleDayAwesomenessRatingChange}
+                        possibleRatings={awesomenessDayRatings}
+                    />
+                </label>
+                <label>
+                    <DatePicker
+                        showTimeSelect
+                        selected={new Date(dayDateAndTime)}
+                        onChange={handleDayDateAndTimeChange}
+                        dateFormat="PPpp"
+                    />
+                </label>
+                <DayDescription
+                    dayDescription={dayDescription}
+                    isEditing={isEditing}
+                    onDayDescriptionChange={handleDayDescriptionChange}
+                    onClickDayDescription={handleStartEditingDayDescription}
+                />
+                <DayPrediction onChange={handleDayPredictionChange} prediction={dayPrediction} />
+                {isLoading ? <div>Submitting...</div> : <input type="submit" value="Submit" />}
+            </form>
+            <div>
+                Icons made by{' '}
+                <a href="https://smashicons.com/" title="Smashicons">
+                    Smashicons
+                </a>{' '}
+                from{' '}
+                <a href="https://www.flaticon.com/" title="Flaticon">
+                    www.flaticon.com
+                </a>
+            </div>
         </div>
     );
 }
 
-
-AddSurfDay.defaultProps = { };
+AddSurfDay.defaultProps = {};
 
 AddSurfDay.propTypes = {
     dayDescription: PropTypes.string,

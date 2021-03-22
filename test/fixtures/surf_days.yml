@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day_awesomeness_rating: 1
+  day_date_and_time: 2021-03-17 16:05:18
+  day_description: MyText
+
+two:
+  day_awesomeness_rating: 1
+  day_date_and_time: 2021-03-17 16:05:18
+  day_description: MyText

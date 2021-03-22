@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  swell_height: 1.5
+  swell_period: 1
+  swell_direction: MyString
+  energy: 1
+  wind_speed: 1.5
+  wind_gusts: 1.5
+  wind_direction: MyString
+  water_temperature: 1.5
+  surf_day: one
+
+two:
+  swell_height: 1.5
+  swell_period: 1
+  swell_direction: MyString
+  energy: 1
+  wind_speed: 1.5
+  wind_gusts: 1.5
+  wind_direction: MyString
+  water_temperature: 1.5
+  surf_day: two

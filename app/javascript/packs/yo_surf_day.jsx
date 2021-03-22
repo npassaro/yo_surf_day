@@ -6,8 +6,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { AddSurfDay } from './add_surf_day'
 
-const YoSurfDay = props => (
-  <AddSurfDay />
+const YoSurfDay = ({ csrfToken }) => (
+  <AddSurfDay csrfToken={csrfToken} />
 )
 
 export default YoSurfDay;

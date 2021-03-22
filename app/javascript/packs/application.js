@@ -16,8 +16,9 @@ Turbolinks.start()
 ActiveStorage.start()
 
 document.addEventListener('DOMContentLoaded', () => {
+  const csrfToken = document.querySelector('[name=csrf-token]').content;
   ReactDOM.render(
-    <YoSurfDay />,
+    <YoSurfDay csrfToken={csrfToken} />,
     document.getElementById('yosurfday-home'),
   )
 })
