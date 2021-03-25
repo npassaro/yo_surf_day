@@ -40,7 +40,7 @@ export function AddSurfDay({ csrfToken }) {
         setDayAwesomenessRating(value);
     };
 
-    const handleStartEditingDayDescription = ({ target }) => {
+    const handleStartEditingDayDescription = () => {
         setIsEditing(true);
     };
 
@@ -81,15 +81,16 @@ export function AddSurfDay({ csrfToken }) {
     return (
         <div className="DayDescription">
             <form onSubmit={handleSubmit} className="AddSurfDay_form">
-                <label>
+                <label htmlFor="add-surf-day_day-rating">
                     Was it good?
                     <DayRating
+                        id="add-surf-day_day-rating"
                         rating={dayAwesomenessRating}
                         onChange={handleDayAwesomenessRatingChange}
                         possibleRatings={awesomenessDayRatings}
                     />
                 </label>
-                <label>
+                <label htmlFor="add-surf-day_date-picker">
                     <DatePicker
                         showTimeSelect
                         selected={new Date(dayDateAndTime)}
@@ -123,6 +124,5 @@ export function AddSurfDay({ csrfToken }) {
 AddSurfDay.defaultProps = {};
 
 AddSurfDay.propTypes = {
-    dayDescription: PropTypes.string,
-    dayAwesomeness: PropTypes.number
+    csrfToken: PropTypes.string
 };

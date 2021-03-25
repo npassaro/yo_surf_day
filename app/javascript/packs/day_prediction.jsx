@@ -34,8 +34,11 @@ export function DayPrediction({ prediction, onChange }) {
     return (
         <div className={classes.container}>
             <div className={classes.formGroup}>
-                <label className={classes.label}>Swell Height</label>
+                <label htmlFor="day-prediction_swell-height" className={classes.label}>
+                    Swell Height
+                </label>
                 <input
+                    id="day-prediction_swell-height"
                     className={classes.input}
                     onChange={({ target }) =>
                         onChange({ ...prediction, swellHeight: target.value })
@@ -43,8 +46,11 @@ export function DayPrediction({ prediction, onChange }) {
                 />
             </div>
             <div className={classes.formGroup}>
-                <label className={classes.label}>Swell Period</label>
+                <label htmlFor="day-prediction_swell-period" className={classes.label}>
+                    Swell Period
+                </label>
                 <input
+                    id="day-prediction_swell-period"
                     className={classes.input}
                     onChange={({ target }) =>
                         onChange({ ...prediction, swellPeriod: target.value })
@@ -52,8 +58,11 @@ export function DayPrediction({ prediction, onChange }) {
                 />
             </div>
             <div className={classes.formGroup}>
-                <label className={classes.label}>Swell Direction</label>
+                <label htmlFor="day-prediction_swell-direction" className={classes.label}>
+                    Swell Direction
+                </label>
                 <input
+                    id="day-prediction_swell-direction"
                     className={classes.input}
                     onChange={({ target }) =>
                         onChange({ ...prediction, swellDirection: target.value })
@@ -61,29 +70,41 @@ export function DayPrediction({ prediction, onChange }) {
                 />
             </div>
             <div className={classes.formGroup}>
-                <label className={classes.label}>Energy</label>
+                <label htmlFor="day-prediction_energy" className={classes.label}>
+                    Energy
+                </label>
                 <input
+                    id="day-prediction_energy"
                     className={classes.input}
                     onChange={({ target }) => onChange({ ...prediction, energy: target.value })}
                 />
             </div>
             <div className={classes.formGroup}>
-                <label className={classes.label}>Wind Speed</label>
+                <label htmlFor="day-prediction_wind-speed" className={classes.label}>
+                    Wind Speed
+                </label>
                 <input
+                    id="day-prediction_wind-speed"
                     className={classes.input}
                     onChange={({ target }) => onChange({ ...prediction, windSpeed: target.value })}
                 />
             </div>
             <div className={classes.formGroup}>
-                <label className={classes.label}>Wind Gusts</label>
+                <label htmlFor="day-prediction_wind-gusts" className={classes.label}>
+                    Wind Gusts
+                </label>
                 <input
+                    id="day-prediction_wind-gusts"
                     className={classes.input}
                     onChange={({ target }) => onChange({ ...prediction, windGusts: target.value })}
                 />
             </div>
             <div className={classes.formGroup}>
-                <label className={classes.label}>Wind Direction</label>
+                <label htmlFor="day-prediction_wind-direction" className={classes.label}>
+                    Wind Direction
+                </label>
                 <input
+                    id="day-prediction_wind-direction"
                     className={classes.input}
                     onChange={({ target }) =>
                         onChange({ ...prediction, windDirection: target.value })
@@ -91,8 +112,11 @@ export function DayPrediction({ prediction, onChange }) {
                 />
             </div>
             <div className={classes.formGroup}>
-                <label className={classes.label}>Water Temperature</label>
+                <label htmlFor="day-prediction_water-temperature" className={classes.label}>
+                    Water Temperature
+                </label>
                 <input
+                    id="day-prediction_water-temperature"
                     className={classes.input}
                     onChange={({ target }) =>
                         onChange({ ...prediction, waterTemperature: target.value })
@@ -102,3 +126,8 @@ export function DayPrediction({ prediction, onChange }) {
         </div>
     );
 }
+
+DayPrediction.propTypes = {
+    prediction: PropTypes.object,
+    onChange: PropTypes.func
+};
