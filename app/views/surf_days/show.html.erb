@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @surf_day %>
+<%= render 'surf_days/forecasts', surf_day: @surf_day %>
+<div>
+  <%= link_to "Edit this surf day", edit_surf_day_path(@surf_day) %> |
+  <%= link_to "Back to surf days", surf_days_path %>
+
+  <%= button_to "Destroy this surf day", @surf_day, method: :delete %>
+</div>

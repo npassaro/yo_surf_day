@@ -1,0 +1,31 @@
+<%= form_with model: [@surf_day, Forecast.new ] do |form| %>
+  Add day forecast:<br>
+  <div>
+    <%= form.label :surf_height, style: "display: block" %>
+    <%= form.text_field :surf_height %>
+  </div>
+
+  <div>
+    <%= form.label :surf_direction, style: "display: block" %>
+    <%= form.text_field :surf_direction %>
+  </div>
+
+  <div>
+    <%= form.label :surf_energy, style: "display: block" %>
+    <%= form.text_field :surf_energy %>
+  </div>
+
+  <div>
+    <%= form.label :wind_speed, style: "display: block" %>
+    <%= form.text_field :wind_speed %>
+  </div>
+
+  <div>
+    <%= form.label :wind_direction, style: "display: block" %>
+    <%= form.text_field :wind_direction %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

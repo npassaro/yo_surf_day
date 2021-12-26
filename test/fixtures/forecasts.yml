@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  surf_day: one
+  wind_speed: 1.5
+  wind_direction: MyString
+  surf_height: 1.5
+  surf_direction: MyString
+  surf_energy: 1
+
+two:
+  surf_day: two
+  wind_speed: 1.5
+  wind_direction: MyString
+  surf_height: 1.5
+  surf_direction: MyString
+  surf_energy: 1

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Surf days</h1>
+
+<div id="surf_days">
+  <% @surf_days.each do |surf_day| %>
+    <%= render surf_day %>
+    <p>
+      <%= link_to "Show this surf day", surf_day %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New surf day", new_surf_day_path %>
