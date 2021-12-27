@@ -1,3 +1,4 @@
 <div id="<%= dom_id(forecast) %>">
-  Surf was <%= forecast.surf_height %>m from <%= forecast.surf_direction %>
+  <span>Surf was <%= forecast.surf_height %> m from <%= forecast.surf_direction %> with <%= forecast.surf_energy %> energy.</span>
+  <span>Wind was <%= forecast.wind_speed %> km/h from <%= forecast.wind_direction %>.</span>
 </div>

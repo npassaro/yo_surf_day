@@ -1,0 +1,18 @@
+.new-forecast-formgroup {
+  display: flex;
+}
+
+.new-forecast-input {
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  max-width: 13rem;
+}
+
+.new-forecast-input:last-child {
+  align-self: end;
+}
+
+.new-forecast-submit_button {
+  width: 100%;
+}

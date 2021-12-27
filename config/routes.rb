@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: "surf_days#index"
   resources :surf_days do
     resources :forecasts
   end

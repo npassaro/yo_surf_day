@@ -1,31 +1,32 @@
 <%= form_with model: [@surf_day, Forecast.new ] do |form| %>
-  Add day forecast:<br>
-  <div>
-    <%= form.label :surf_height, style: "display: block" %>
-    <%= form.text_field :surf_height %>
-  </div>
+  <div class="new-forecast-formgroup">
+    <div class="new-forecast-input">
+      <%= form.label :surf_height %>
+      <%= form.text_field :surf_height %>
+    </div>
 
-  <div>
-    <%= form.label :surf_direction, style: "display: block" %>
-    <%= form.text_field :surf_direction %>
-  </div>
+    <div class="new-forecast-input">
+      <%= form.label :surf_direction %>
+      <%= form.text_field :surf_direction %>
+    </div>
 
-  <div>
-    <%= form.label :surf_energy, style: "display: block" %>
-    <%= form.text_field :surf_energy %>
-  </div>
+    <div class="new-forecast-input">
+      <%= form.label :surf_energy%>
+      <%= form.text_field :surf_energy %>
+    </div>
 
-  <div>
-    <%= form.label :wind_speed, style: "display: block" %>
-    <%= form.text_field :wind_speed %>
-  </div>
 
-  <div>
-    <%= form.label :wind_direction, style: "display: block" %>
-    <%= form.text_field :wind_direction %>
-  </div>
+    <div class="new-forecast-input">
+      <%= form.label :wind_speed %>
+      <%= form.text_field :wind_speed %>
+    </div>
 
-  <div>
-    <%= form.submit %>
+    <div class="new-forecast-input">
+      <%= form.label :wind_direction %>
+      <%= form.text_field :wind_direction %>
+    </div>
+    <div class="new-forecast-input">
+      <%= form.submit "Add", class: "new-forecast-submit_button" %>
+    </div>
   </div>
 <% end %>

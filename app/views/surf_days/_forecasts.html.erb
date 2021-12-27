@@ -1,5 +1,5 @@
-<h2></h2>
-<div id="forecasts">
-<%= render surf_day.forecasts %>
-</div>
+<details id="forecasts">
+  <summary>Forecasts <%= time_tag surf_day.date, "data-local": "time-ago" %> </summary>
+  <%= render surf_day.forecasts %>
+</details>
 <%= render "forecasts/new", surf_day: surf_day %>
